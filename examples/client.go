@@ -1,20 +1,3 @@
-# agollo
-apollo golang client
-
-based on github.com/shima-park/agollo
-
-
-### get config from apollo( with watch) and unmarshal to a struct
-```golang
- apollo.StartAndUnmarshal(&c, apollo.BackFile("/tmp/test.log"))
-```
-### get config from apollo( with watch)
-```golang
-apollo.Start(apollo.BackFile("/tmp/test.log"))
-```
-### full example
-
-```
 package main
 
 import (
@@ -27,15 +10,15 @@ import (
 )
 
 type TestConf struct {
-	A string
-	B string
-	C int
+	A string `json:"a"`
+	B string `json:"b"`
+	C int    `json:"c"`
 }
 
-func getApolloUnmarshal(c *TestConf)(agollo.Agollo, error){
+func getApolloUnmarshal(c *TestConf) (agollo.Agollo, error) {
 	return apollo.StartAndUnmarshal(&c, apollo.BackFile("/tmp/test.log"))
 }
-func getApollo()(agollo.Agollo, error){
+func getApollo() (agollo.Agollo, error) {
 	return apollo.Start(apollo.BackFile("/tmp/test.log"))
 }
 
@@ -71,8 +54,5 @@ func main() {
 
 	fmt.Printf("apollo.StartAndUnmarshal:%+v\n", c)
 
-
-
 	time.Sleep(100 * time.Hour)
 }
-```
