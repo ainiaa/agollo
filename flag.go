@@ -19,8 +19,11 @@ func parseFlagWithSubCmd() {
 		}
 	}
 	if index != -1 {
-		err := fs.Parse(os.Args[index:]) //除去第一个参数
-		fmt.Printf("fs.Parse error:%v\n", err)
+		err := fs.Parse(os.Args[index:]) //除去子命令
+		fmt.Printf("fs.Parse with subcmd error:%v\n", err)
+	} else {
+		err := fs.Parse(os.Args[index:]) //除去子命令
+		fmt.Printf("fs.Parse without subcmd error:%v\n", err)
 	}
 }
 
